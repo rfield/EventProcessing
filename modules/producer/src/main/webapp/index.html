@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Event Processing POC - Producer</title>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/techarch.css">
+    <link rel="stylesheet" href="styles/forms.css">
+
+</head>
+
+<body>
+<div id="container">
+    <header>
+        <h1>Event Processing Simulation</h1>
+        <h2>Event Producer</h2>
+    </header>
+
+    <section>
+        <article>
+            <h3>Simulate an Event Stream</h3>
+
+            <form method="post"
+                  enctype="application/x-www-form-urlencoded"
+                  action="initiateStream.do">
+
+                <fieldset>
+                    <legend>Event Simulation Parameters</legend>
+
+                    <p>Type of event stream:</p>
+                    <p><label for="streamTypeFinite">Finite:</label>
+                        <input id="streamTypeFinite" name="streamType" type="radio" value="finite" checked=true
+                                onclick="radioClicked(this.value)" title="Send a fixed number of events, then stop."></p>
+                    <p><label for="streamTypeInfinite">Infinite:</label>
+                        <input id="streamTypeInfinite" name="streamType" type="radio" value="infinite"
+                                onclick="radioClicked(this.value)" title="Send events continuously, until a stop signal."></p>
+
+                    <p><label for="numMessages">No. of events : </label>
+                        <input id="numMessages" name="numMessages" type="number"
+                               placeholder="1" title="Total number of events to send across all threads"></p>
+
+                    <p><label for="numThreads">No. of sending threads : </label>
+                        <input id="numThreads" name="numThreads" type="number"
+                               placeholder="1" title="Number of concurrent threads sending events" required></p>
+
+                    <p><label for="milliSecondsDelay">Milliseconds delay : </label>
+                        <input id="milliSecondsDelay" name="milliSecondsDelay" type="number"
+                               placeholder="0" title="Number of milliseconds delay between events" required></p>
+
+                    <p><label for="eventType">Event type:</label>
+                        <select id="eventType" name="eventType">
+                            <option value="0">String</option>
+                            <option value="1">XML</option>
+                            <option value="2">Object</option>
+                        </select>
+                    </p>
+
+                    <!--
+                    <p><label for="messageText">Message text : </label>
+                        <input id="messageText" name="messageText" type="text"
+                               placeholder="Enter message text here" required></p>
+                    -->
+                </fieldset>
+
+                <p align="center"><input type="submit" name="start" value="Start"></p>
+            </form>
+        </article>
+    </section>
+
+    <footer>
+        <p align="center"><img src="images/TA-Logo.JPG" alt="Technology Architecture"></p>
+        <h4><p align="center">Powered by HTML5</p></h4>
+    </footer>
+
+</div>
+
+<script>
+function radioClicked(value) {
+    document.getElementById("numMessages").disabled = (value=="finite") ? false : true;
+}
+</script>
+
+</body>
+
+</html>
